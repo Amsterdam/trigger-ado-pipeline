@@ -14,13 +14,13 @@ browser url of the pipeline.
 
 **Required** The Organisation where the pipeline can be found in ADO.
 This this the first part of the path in the pipeline url in the browser.
-https://dev.azure.com/<Organisation>
+https://dev.azure.com/<organisation>
 
 ## `project`
 
 **Required** The Project where the pipeline can be found in ADO.
-This this the second part of the path in the pipeline url in the browser.
-https://dev.azure.com/<Organisation>/<Project>
+This is the second part of the path in the pipeline url in the browser.
+https://dev.azure.com/<organisation>/<Project>
 
 
 ## `pat-token`
