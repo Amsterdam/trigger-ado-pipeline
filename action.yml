@@ -1,0 +1,30 @@
+name: 'Trigger ADO pipeline'
+description: 'Trigger a pipeline in ADO'
+inputs:
+  pipeline-id:  # id of input
+    description: 'Id of the pipeline in ADO'
+    required: true
+  organisation:  # id of input
+    description: 'Organisation in ADO'
+    required: true
+  project:  # id of input
+    description: 'Project in ADO'
+    required: true
+  pat-token:  # id of input
+    description: 'PAT token to have permissions on ADO'
+    required: true
+  template-params:  # id of input
+    description: 'Params for the pipeline template (a json string)'
+    required: false
+# outputs:
+#   time: # id of output
+#     description: 'The time we greeted you'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.pipeline-id }}
+    - ${{ inputs.organisation }}
+    - ${{ inputs.project }}
+    - ${{ inputs.pat-token }}
+    - ${{ inputs.template-params }}
