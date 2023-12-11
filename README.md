@@ -35,7 +35,7 @@ can be provided as a json string.
 
 ## Example usage
 
-    uses: jjmurre/trigger-ado-pipeline@v1
+    uses: amsterdam/trigger-ado-pipeline@v1
     with:
       pipeline-id: 1234
       organisation: CloudCompetenceCenter
