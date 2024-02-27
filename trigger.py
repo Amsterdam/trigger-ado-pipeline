@@ -2,6 +2,7 @@ import json
 import requests
 import sys
 import base64
+from json.decoder import JSONDecodeError
 
 URL_TEMPLATE = "https://dev.azure.com/{organisation}/{project}/_apis/pipelines/{pipeline_id}/runs?api-version=7.1-preview.1"
 uri_data = {"resources": {}, "templateParameters": {}, "variables": {}}
@@ -14,8 +15,11 @@ def _fetch_headers(pat_token):
 
 def trigger_pipeline(pipeline_id, organisation, project, pat_token, template_params=None):
     url = URL_TEMPLATE.format(organisation=organisation, project=project, pipeline_id=pipeline_id)
-    if template_params is not None:
-        uri_data["templateParameters"] = json.loads(template_params)
+    if template_params.strip():
+        try:
+            uri_data["templateParameters"] = json.loads(template_params)
+        except JSONDecodeError:
+            pass
     try:
         response = requests.post(url, json=uri_data, headers=_fetch_headers(pat_token))
         if response.status_code == 203:
